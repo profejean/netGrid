@@ -17,6 +17,7 @@ class CreateFavorites extends Migration
             $table->id();
             $table->bigInteger('id_usuario');
             $table->string('ref_api');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -21,8 +21,7 @@ class CreateUsersTable extends Migration
             $table->longText('address');
             $table->date('birthdate');
             $table->string('city');
-
-
+            $table->softDeletes();
             $table->timestamps();
         });
     }
