@@ -39,27 +39,21 @@ class AuthTest extends TestCase
         $name = $this->faker->name;
         $email = $this->faker->email;
         $password = $this->faker->numberBetween($min = 10000000, $max = 90000000);
-        $address = $this->faker->address;
-        $birthdate = $this->faker->dateTimeThisCentury->format('Y-m-d');
-        $city = $this->faker->city;
+        
 
         $response = $this->post(route('register'), [
             'name' => $name,
             'email' => $email,
             'password' => $password,
-            'password_confirmation' => $password,
-            'address' => $address,
-            'birthdate' => $birthdate,
-            'city' => $city
+            'password_confirmation' => $password
+
 
         ])->assertStatus(200);
 
         $this->assertDatabaseHas('users', [
             'name' => $name,
-            'email' => $email,
-            'address' => $address,
-            'birthdate' => $birthdate,
-            'city' => $city
+            'email' => $email
+
         ]);
 
     }
