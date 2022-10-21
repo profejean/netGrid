@@ -49,7 +49,6 @@ class UserController extends Controller
             [
                 'name' => 'required|max:255',
                 'email' => 'required|email|unique:users,email,'.$user->id,
-                'password' => 'required|min:8',
                 'address' => 'max:500',
                 'birthdate' => 'date',
                  'city' => 'max:255',
@@ -65,14 +64,9 @@ class UserController extends Controller
             }
 
             //update users
-            $user = User::updated([
-                'name' => $request->name,
-                'email' => $request->email,
-                'password' => Hash::make($request->password),
-                'address' => $request->address,
-                'birthdate' => $request->birthdate,
-                'city' => $request->city
-            ]);
+
+            $user->fill($request->all())->save();
+
 
             return response()->json([
                 'status' => true,

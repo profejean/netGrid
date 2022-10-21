@@ -28,7 +28,6 @@ class UserTest extends TestCase
             '_token' => csrf_token(),
             'name' => $user->name,
             'email' => $user->email,
-            'password' => bcrypt('password'),
             'address' => $this->faker->address,
             'birthdate' => $this->faker->dateTimeThisCentury->format('Y-m-d'),
             'city' => $this->faker->city
