@@ -44,6 +44,18 @@ services:
             test: ["CMD", "mysqladmin", "ping", "-p${DB_PASSWORD}"]
             retries: 3
             timeout: 5s
+    phpmyadmin:
+        image: phpmyadmin
+        container_name: phpmyadmin-elmasvalioso
+        ports:
+            - 8080:80
+        environment:
+            - PMA_ARBITRARY=1
+            - PMA_HOST= mysql
+            - PMA_PASSWORD= ${MYSQL_ROOT_PASSWORD}
+            - UPLOAD_LIMIT=10000M
+        networks:
+            - sail
 networks:
     sail:
         driver: bridge
